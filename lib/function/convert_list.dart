@@ -1,85 +1,55 @@
 import 'dart:convert';
 
 class ConvertList {
-  var list = [
-    {
-      "id": "a",
-      "type": "container",
-      "props": {"height": "Infinity"}
-    },
-    {
-      "id": "b",
-      "parrentID": "a",
-      "type": "container",
-      "props": {"align": "center"}
-    },
-    {"id": "c", "parrentID": "b", "type": "column"},
-    {"id": "d", "parrentID": "c", "type": "button"},
-    {
-      "id": "e",
-      "parrentID": "c",
-      "type": "text",
-      "props": {"text": "Hello, World"}
-    }
-  ];
-  // var list = [
-  //   {
-  //     "id": "b",
-  //     "type": "container",
-  //     "parrentID": "a",
-  //     "props": {"height": "Infinity"}
-  //   },
-  //   {
-  //     "id": "a",
-  //     "type": "container",
-  //     "props": {"height": "Infinity"}
-  //   },
-  //   {
-  //     "id": "c",
-  //     "parrentID": "a",
-  //     "type": "container",
-  //     "props": {"align": "center"}
-  //   },
-  //   {"id": "d", "parrentID": "b", "type": "column"},
-  //   {"id": "e", "parrentID": "c", "type": "button"},
-  //   {
-  //     "id": "f",
-  //     "parrentID": "c",
-  //     "type": "text",
-  //     "props": {"text": "Hello, World"}
-  //   }
-  // ];
-  bool checkParrent = true;
-  String convert() {
+  String? checkError;
+  String convert(List<Map<String, Object>> list) {
     Map<String, Object> out = {};
+    List id = [];
+    if (list.isEmpty || list.length < 1) return 'Error: list empty.';
     for (var element in list) {
-      if (checkParrent) {
-        print('error');
-        return 'error';
-      }
+      if (id.contains(element['id']))
+        return 'Error: this id already exists in the tree.';
+      id.add(element['id']);
       createNode(out, element);
+      if (checkError != null) {
+        return checkError!;
+      }
     }
-    print(jsonEncode(out).toString());
     return jsonEncode(out);
   }
 
   void createNode(Map<String, Object> list, var element) {
+    checkError = null;
+    if (element['id'] == null) {
+      checkError = 'Error: not foud node "id".';
+      return;
+    }
+
     if (element['parrentID'] == null) {
       list.addAll(element);
+
       return;
     }
     if (list['id'] == element['parrentID'].toString()) {
       if (list['child'] != null) {
         list['children'] = [list['child'], element];
         list.remove('child');
-      } else
+      } else if (list['children'] != null) {
+        list['children'] = [list['children'], element];
+      } else {
         list['child'] = element;
+      }
+      element.remove('parrentID');
       return;
     }
-    if (list['child'] == null) {
-      checkParrent = false;
-      return;
+    if (list['children'] != null) {
+      for (var child in list['children'] as List<dynamic>) {
+        createNode(child, element);
+      }
+    } else if (list['child'] != null) {
+      createNode(list['child'] as Map<String, Object>, element);
+    } else {
+      checkError = 'Error: invaild parrentId.';
     }
-    createNode(list['child'] as Map<String, Object>, element);
   }
 }
