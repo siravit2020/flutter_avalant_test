@@ -1,16 +1,32 @@
 # flutter_avalant_test
 
-A new Flutter project.
+Full stack Exam
 
-## Getting Started
+Platform support: Android, IOS, Web
 
-This project is a starting point for a Flutter application.
+### 1.Please write a function to convert List to Tree structure?
 
-A few resources to get you started if this is your first Flutter project:
+  #### Unit Testing
+  
+  run command: flutter test test/convert_list_test.dart
+  
+### 2. Have a prototype for Home page and code main.dart, but code in main.dart it is not completed yet. Please make this app work correctly.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  #### Unit Testing
+  
+  run command: flutter test test/custom_tab_controller_test.dart
+  
+  #### Integrated testing
+  
+  run command: flutter devices
+  
+  command:
+  sdk gphone arm64 (mobile)  • <DEVICE_ID>                        • android-arm64  • Android 11 (API 30) (emulator)
+  
+  iPhone 12 Pro Max (mobile) • <DEVICE_ID> • ios            • com.apple.CoreSimulator.SimRuntime.iOS-14-5 (simulator)
+  
+  
+  run command: flutter_avalant_test % flutter drive \                                 
+  --driver=test_driver/integration_test.dart \
+  --target=integration_test/app_test.dart \
+  -d <DEVICE_ID>
