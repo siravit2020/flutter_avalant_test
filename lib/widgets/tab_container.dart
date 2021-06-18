@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_avalant_test/custom_tab_controller.dart';
-import 'package:flutter_avalant_test/tab_item.dart';
+import 'package:flutter_avalant_test/controller/custom_tab_controller.dart';
+import 'package:flutter_avalant_test/model/tab_item.dart';
 
 class TabContainer extends StatelessWidget {
   const TabContainer({
@@ -13,7 +13,6 @@ class TabContainer extends StatelessWidget {
 
   
   Widget build(BuildContext context) {
-    
     return Container(
       padding: const EdgeInsets.all(20),
       constraints: BoxConstraints(maxWidth: 800),

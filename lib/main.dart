@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_avalant_test/custom_tab_controller.dart';
-import 'package:flutter_avalant_test/tab_container.dart';
-import 'package:flutter_avalant_test/tab_item.dart';
+import 'package:flutter_avalant_test/controller/custom_tab_controller.dart';
+import 'package:flutter_avalant_test/widgets/tab_container.dart';
+import 'package:flutter_avalant_test/model/tab_item.dart';
 
 void main() {
   runApp(MyApp());

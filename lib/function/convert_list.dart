@@ -31,6 +31,7 @@ class ConvertList {
       return;
     }
     if (list['id'] == element['parrentID'].toString()) {
+      element.remove('parrentID');
       if (list['child'] != null) {
         list['children'] = [list['child'], element];
         list.remove('child');
@@ -39,7 +40,7 @@ class ConvertList {
       } else {
         list['child'] = element;
       }
-      element.remove('parrentID');
+      
       return;
     }
     if (list['children'] != null) {
