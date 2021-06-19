@@ -4,6 +4,8 @@ Full stack Exam
 
 Platform support: Android, IOS, Web
 
+Flutter 2.2.0
+
 ### 1.Please write a function to convert List to Tree structure?
 
   #### Unit Testing
